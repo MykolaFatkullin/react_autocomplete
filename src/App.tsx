@@ -22,7 +22,7 @@ export const App: React.FC = () => {
             : 'No selected person'}
         </h1>
 
-        <UserSelect people={peopleFromServer} onSelect={handleSelect} />
+        <UserSelect people={peopleFromServer} onSelected={handleSelect} />
       </main>
     </div>
   );

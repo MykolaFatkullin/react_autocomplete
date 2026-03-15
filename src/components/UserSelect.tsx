@@ -6,13 +6,13 @@ import classNames from 'classnames';
 type Props = {
   people: Person[];
   delay?: number;
-  onSelect?: (person: Person | null) => void;
+  onSelected?: (person: Person | null) => void;
 };
 
 export const UserSelect = ({
   people,
   delay = 300,
-  onSelect = () => {},
+  onSelected = () => {},
 }: Props) => {
   const [query, setQuery] = React.useState('');
   const [appliedQuery, setAppliedQuery] = React.useState('');
@@ -23,7 +23,7 @@ export const UserSelect = ({
   const handleQueryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
     applyQuery(event.target.value);
-    onSelect(null);
+    onSelected(null);
   };
 
   const filterPeople = useMemo(() => {
@@ -59,9 +59,10 @@ export const UserSelect = ({
                   key={person.slug}
                   data-cy="suggestion-item"
                   onClick={() => {
-                    onSelect(person);
+                    onSelected(person);
                     setQuery(person.name);
                     setAppliedQuery(person.name);
+                    setIsDropdownOpen(false);
                   }}
                 >
                   <p
