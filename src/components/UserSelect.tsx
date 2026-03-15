@@ -46,6 +46,7 @@ export const UserSelect = ({
             value={query}
             onChange={handleQueryChange}
             onFocus={() => setIsDropdownOpen(true)}
+            onBlur={() => setIsDropdownOpen(false)}
           />
         </div>
 
@@ -60,6 +61,7 @@ export const UserSelect = ({
                   onClick={() => {
                     onSelect(person);
                     setQuery(person.name);
+                    setAppliedQuery(person.name);
                   }}
                 >
                   <p
@@ -77,7 +79,7 @@ export const UserSelect = ({
         )}
       </div>
 
-      {filterPeople.length === 0 && (
+      {filterPeople.length === 0 && appliedQuery.trim().length > 0 && (
         <div
           className="
             notification
